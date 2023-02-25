@@ -1,7 +1,7 @@
 
-const peg = require('peggy');
-const path = require('path');
-const fs = require('fs');
+import peg from 'peggy'
+import path from 'path'
+import fs from 'fs'
 
 const parseDiff = (diffData: string) => {
     const rule = fs.readFileSync(path.resolve(__dirname, '../peggy/diffParser.peggy'));

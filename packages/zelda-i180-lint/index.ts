@@ -1,4 +1,4 @@
-import add from './src'
 
-console.log(add(1,2));
-console.log(111);
+import exec from './src'
+
+export default exec

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "i180/lint": "./bin"
+  },
   "scripts": {
     "dev": "father dev",
     "build": "father build",
