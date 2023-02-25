@@ -1,0 +1,23 @@
+{
+  "name": "zelda-i180-lint",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "father dev",
+    "build": "father build",
+    "build:deps": "father prebundle",
+    "prepublishOnly": "father doctor && npm run build",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "compiled"
+  ],
+  "devDependencies": {
+    "peggy": "^3.0.0"
+  }
+}
