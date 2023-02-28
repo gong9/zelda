@@ -1,23 +1,7 @@
 # zelda
 
-[![NPM version](https://img.shields.io/npm/v/zelda.svg?style=flat)](https://npmjs.org/package/zelda)
-[![NPM downloads](http://img.shields.io/npm/dm/zelda.svg?style=flat)](https://npmjs.org/package/zelda)
+## What
 
-## Install
-
-```bash
-$ pnpm install
-```
-
-```bash
-$ npm run dev
-$ npm run build
-```
-
-## Options
-
-TODO
-
-## LICENSE
+一些用于提高效率的npm包
 
 MIT
