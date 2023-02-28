@@ -6,17 +6,18 @@ interface notTranslationType {
     key: string;
     value: string;
 }
-const command = `git diff HEAD  src/utils/i18n/en.json`;
-const notTranslation: notTranslationType[] = [];
 
-const execDiff = () => {
+const execDiff = (path: string, asBin: boolean = true) => {
+    const command = `git diff HEAD  ${path}`;
+    const notTranslation: notTranslationType[] = [];
+
     exec(command, (err, stdout: string) => {
         if (err) {
-            console.log(err);
+            console.error(err);
         } else {
             if (!stdout) {
-                console.log('本次提交暂无新增加内容');
-                return;
+                console.info('本次提交暂无新增加内容');
+                return notTranslation;
             }
 
             const curAddText = parseDiff(stdout).change[0].content.filter(
@@ -39,12 +40,19 @@ const execDiff = () => {
             });
 
             if (notTranslation.length > 0) {
-                console.table(notTranslation, ['key', 'value']);
-                throw new Error(
-                    `本次提交，存在未翻译的配置。请检查「如果确认此修改，请commit添加参数--no-verify 」`,
-                );
+                if (asBin) {
+                    console.table(notTranslation, ['key', 'value']);
+                    throw new Error(
+                        `本次提交，存在未翻译的配置。请检查「如果确认此修改，请commit添加参数--no-verify 」`,
+                    );
+                } else {
+                    return notTranslation
+                }
+
             } else {
-                console.log('未发现异常');
+                console.info('未发现异常');
+                
+                return notTranslation
             }
         }
     });
