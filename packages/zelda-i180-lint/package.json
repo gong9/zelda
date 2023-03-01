@@ -1,6 +1,6 @@
 {
   "name": "zelda-i180-lint",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
   "bin": {
@@ -8,7 +8,8 @@
   },
   "files": [
     "dist",
-    "readme.md"
+    "readme.md",
+    "package.json"
   ],
   "scripts": {
     "dev": "father dev",
@@ -20,7 +21,7 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "peggy": "^3.0.0"
   }
 }

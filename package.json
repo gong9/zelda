@@ -3,18 +3,13 @@
   "version": "0.0.0",
   "description": "zelda",
   "scripts": {
-    "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
-    "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
+    "build": "pnpm -r build",
     "prepare": "husky install",
     "test": "pnpm -r test"
   },
   "keywords": [],
   "authors": [],
   "license": "MIT",
-  "files": [
-    "dist",
-    "compiled"
-  ],
   "devDependencies": {
     "@types/node": "^18.14.1",
     "father": "^4.1.5",
