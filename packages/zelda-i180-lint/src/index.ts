@@ -1,6 +1,6 @@
-import { exec } from 'child_process'
-import containsChinese from './utils/containsChinese'
-import parseDiff from './utils/parseDiff'
+import { exec } from 'child_process';
+import containsChinese from './utils/containsChinese';
+import parseDiff from './utils/parseDiff';
 
 interface notTranslationType {
     key: string;
@@ -46,17 +46,17 @@ const execDiff = (path: string, asBin: boolean = true) => {
                         `本次提交，存在未翻译的配置。请检查「如果确认此修改，请commit添加参数--no-verify 」`,
                     );
                 } else {
-                    return notTranslation
+                    return notTranslation;
                 }
 
             } else {
                 console.info('未发现异常');
                 
-                return notTranslation
+                return notTranslation;
             }
         }
     });
-}
+};
 
 
-export default execDiff
+export default execDiff;

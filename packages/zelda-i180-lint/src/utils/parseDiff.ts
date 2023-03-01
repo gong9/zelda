@@ -1,7 +1,7 @@
 
-import peg from 'peggy'
-import path from 'path'
-import fs from 'fs'
+import peg from 'peggy';
+import path from 'path';
+import fs from 'fs';
 
 const parseDiff = (diffData: string) => {
     const rule = fs.readFileSync(path.resolve(__dirname, '../peggy/diffParser.peggy'));
@@ -10,4 +10,4 @@ const parseDiff = (diffData: string) => {
     return parser.parse(diffData);
 };
 
-export default parseDiff
+export default parseDiff;

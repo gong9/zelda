@@ -12,4 +12,4 @@ const containsChinese = (text: string) => {
     return !!text.match(HAN_REGEX);
 };
 
-export default containsChinese
+export default containsChinese;

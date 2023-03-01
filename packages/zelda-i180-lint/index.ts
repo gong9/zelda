@@ -1,4 +1,4 @@
 
-import exec from './src'
+import exec from './src';
 
-export default exec
+export default exec;
