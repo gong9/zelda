@@ -4,7 +4,8 @@
     "declaration": true,
     "skipLibCheck": true,
     "baseUrl": "./",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
   "exclude": [
     "dist"

@@ -22,6 +22,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "cleye": "^1.3.2",
     "peggy": "^3.0.0"
   }
 }
