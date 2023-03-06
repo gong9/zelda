@@ -1,14 +1,20 @@
 import { exec } from 'child_process';
 import containsChinese from './utils/containsChinese';
 import parseDiff from './utils/parseDiff';
+import toObject from './utils/toObject';
 
 export interface notTranslationType {
     key: string;
     value: string;
 }
 
+interface AddTextType  {
+    type: string;
+    text: string;
+}
+
 const execDiff = (path: string, asBin: boolean = false) => {
-    const command = `git diff HEAD  ${path}`;
+    const command = `git diff --cached  ${path}`;
     const notTranslation: notTranslationType[] = [];
 
     return new Promise((res, rej) => {
@@ -21,23 +27,27 @@ const execDiff = (path: string, asBin: boolean = false) => {
                     console.info('本次提交暂无新增加内容');
                     res(notTranslation);
                     return;
+                }  
+
+                let curAddText: AddTextType[] = [];
+              
+                if(parseDiff(stdout).change.length > 0){
+                    curAddText = parseDiff(stdout).change.reduce((pre:AddTextType[],cur:any)=>{
+                        return [
+                            ...pre,
+                            ...cur.content.filter((item: any) => item.type === '+')
+                        ];
+                    },curAddText);
                 }
-
-                const curAddText = parseDiff(stdout).change[0].content.filter(
-                    (item: any) => item.type === '+',
-                );
-
-                curAddText.forEach((item: any) => {
-                    const curItemValue = item.text.split('": "');
-
-                    if (curItemValue.length > 2) {
-                        throw new Error(`${item} 无法正确解析，请手动判断`);
-                    }
-
-                    if (containsChinese(curItemValue[1])) {
+                
+                curAddText.forEach((item: AddTextType) => {
+                    const curItemObjectData = toObject(item.text);
+                    console.log(curItemObjectData,1111);
+                    
+                    if (containsChinese(curItemObjectData[Object.keys(curItemObjectData)[0]])) {
                         notTranslation.push({
-                            key: curItemValue[0],
-                            value: curItemValue[1],
+                            key: Object.keys(curItemObjectData)[0],
+                            value: curItemObjectData[Object.keys(curItemObjectData)[0]],
                         });
                     }
                 });
@@ -48,7 +58,7 @@ const execDiff = (path: string, asBin: boolean = false) => {
                         throw new Error(
                             `本次提交，存在未翻译的配置。请检查「如果确认此修改，请commit添加参数--no-verify 」`,
                         );
-                    } else {
+                    } else {    
                         res(notTranslation);
                     }
 
