@@ -25,6 +25,7 @@ if (curPath) {
     console.info('请输入文件路径');
 }
 
+export default execDiff;
 
 
 

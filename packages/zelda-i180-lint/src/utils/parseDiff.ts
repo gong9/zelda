@@ -1,4 +1,3 @@
-
 import peg from 'peggy';
 import path from 'path';
 import fs from 'fs';
