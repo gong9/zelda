@@ -2,7 +2,7 @@ import { exec } from 'child_process';
 import containsChinese from './utils/containsChinese';
 import parseDiff from './utils/parseDiff';
 
-interface notTranslationType {
+export interface notTranslationType {
     key: string;
     value: string;
 }
