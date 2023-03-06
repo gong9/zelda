@@ -42,7 +42,6 @@ const execDiff = (path: string, asBin: boolean = false) => {
                 
                 curAddText.forEach((item: AddTextType) => {
                     const curItemObjectData = toObject(item.text);
-                    console.log(curItemObjectData,1111);
                     
                     if (containsChinese(curItemObjectData[Object.keys(curItemObjectData)[0]])) {
                         notTranslation.push({
