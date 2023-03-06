@@ -4,7 +4,12 @@ describe('containsChinese',()=>{
     it('should return true if the text contains at least one Chinese characters',()=>{
         expect(containsChinese('你好')).toBe(true);
     });
+    
     it('should return false if the text does not contain Chinese characters',()=>{
         expect(containsChinese('hello')).toBe(false);
+    });
+
+    it('both chinese and english exist',()=>{
+        expect(containsChinese('hello,世界')).toBe(true);
     });
 });

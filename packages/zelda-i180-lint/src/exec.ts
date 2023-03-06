@@ -59,8 +59,6 @@ const execDiff = (path: string, asBin: boolean = false) => {
             }
         });
     });
-
-
 };
 
 
