@@ -20,6 +20,7 @@ const execDiff = (path: string, asBin: boolean = false) => {
                 if (!stdout) {
                     console.info('本次提交暂无新增加内容');
                     res(notTranslation);
+                    return;
                 }
 
                 const curAddText = parseDiff(stdout).change[0].content.filter(
