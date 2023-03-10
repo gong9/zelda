@@ -2,6 +2,6 @@
 
 ## What
 
-一些用于提高效率的npm包
+some npm packages used to improve efficiency
 
 MIT
