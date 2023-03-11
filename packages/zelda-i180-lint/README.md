@@ -1,4 +1,4 @@
-# zelda-i18n-lint
+# zelda-en-lint
 
 ## What
 
@@ -6,8 +6,8 @@
 
 ## Use
 
-- pnpm add zelda-i180-lint -D
-- pnpm lint-i180 -p="xxx"    xxx: 英文配置文件的路径，默认仅检查暂存区和版本区的diff
-- pnpm lint-i180 -p="xxx" -a   检查整个英文配置文件,全部不限git工作区
+- pnpm add zelda-en-lint -D
+- pnpm lint-en -p="xxx"    xxx: 英文配置文件的路径，默认仅检查暂存区和版本区的diff
+- pnpm lint-en -p="xxx" -a   检查整个英文配置文件,全部不限git工作区
 
 

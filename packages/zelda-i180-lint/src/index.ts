@@ -5,9 +5,9 @@ import findAllDiff from './findAllDiff';
 import packJson from '../package.json';
 
 const argv = cli({
-    name: 'zelda-i180-lint',
+    name: 'zelda-en-lint',
     version: packJson.version,
-    description: 'i180 lint',
+    description: 'lint-en',
     flags: {
         path: {
             type: String,
