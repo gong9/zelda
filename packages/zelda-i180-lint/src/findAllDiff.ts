@@ -26,8 +26,9 @@ const findAllDiff = (path: string) => {
 
         if (notTranslation.length > 0) {
             console.table(notTranslation, ['key', 'value']);
-            return notTranslation;
         }
+
+        return notTranslation;
 
     } catch (error) {
         console.error(error);
