@@ -9,7 +9,7 @@ const parseDiff = (diffData: string) => {
     try {
         return parser.parse(diffData);
     } catch (error) {
-        return null
+        return null;
     }
 };
 

@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { consola } from 'consola'
+import { consola } from 'consola';
 import containsChinese from "./utils/containsChinese";
 import { notTranslationType } from './exec';
 
@@ -10,7 +10,7 @@ const findAllDiff = (path: string, isPrivate = false) => {
         const fileData = fs.readFileSync(path);
 
         if (!fileData.toString()) {
-            consola.warn('文件内容为空')
+            consola.warn('文件内容为空');
             return notTranslation;
         }
 
@@ -27,7 +27,7 @@ const findAllDiff = (path: string, isPrivate = false) => {
         );
 
         if (!isPrivate && notTranslation.length > 0) {
-            consola.info('以下是未翻译的配置：')
+            consola.info('以下是未翻译的配置：');
             console.table(notTranslation, ['key', 'value']);
         }
 

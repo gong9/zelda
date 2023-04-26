@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { cli } from 'cleye';
-import { consola } from 'consola'
+import { consola } from 'consola';
 import execDiff from "./exec";
 import findAllDiff from './findAllDiff';
 import packJson from '../package.json';

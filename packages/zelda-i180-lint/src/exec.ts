@@ -1,5 +1,5 @@
 import { exec } from 'child_process';
-import { consola } from 'consola'
+import { consola } from 'consola';
 import containsChinese from './utils/containsChinese';
 import parseDiff from './utils/parseDiff';
 import toObject from './utils/toObject';
@@ -53,12 +53,12 @@ const execDiff = (path: string, asBin: boolean = false) => {
                         }
                     });
                 }else if(!parseResult){
-                    notTranslation = findAllDiff(path,true)
+                    notTranslation = findAllDiff(path,true);
                 }
 
                 if (notTranslation.length > 0) {
                     if (asBin) {
-                        consola.warn('本次提交，存在未翻译的配置。请检查')
+                        consola.warn('本次提交，存在未翻译的配置。请检查');
                         console.table(notTranslation, ['key', 'value']);
 
                         const result = await consola.prompt("返回修改?", {
@@ -71,7 +71,7 @@ const execDiff = (path: string, asBin: boolean = false) => {
                             );
                         }
 
-                        consola.success('翻译检查通过')
+                        consola.success('翻译检查通过');
                         res(notTranslation);
                        
                     } else {
@@ -80,7 +80,7 @@ const execDiff = (path: string, asBin: boolean = false) => {
 
                 } else {
                     console.info('未发现异常');
-                    consola.success('翻译检查通过')
+                    consola.success('翻译检查通过');
                     res(notTranslation);
                 }
             }
