@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { cli } from 'cleye';
+import { consola } from 'consola'
 import execDiff from "./exec";
 import findAllDiff from './findAllDiff';
 import packJson from '../package.json';
@@ -30,7 +31,8 @@ if (curPath) {
         execDiff(curPath, true);
     }
 } else {
-    console.info('请输入文件路径');
+    consola.warn('请输入文件路径');
+    consola.info('example: pnpm lint-en -p="xxx"');
 }
 
 

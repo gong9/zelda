@@ -6,7 +6,11 @@ const parseDiff = (diffData: string) => {
     const rule = fs.readFileSync(path.resolve(__dirname, '../peggy/diffParser.peggy'));
     const parser = peg.generate(rule.toString());
 
-    return parser.parse(diffData);
+    try {
+        return parser.parse(diffData);
+    } catch (error) {
+        return null
+    }
 };
 
 export default parseDiff;
