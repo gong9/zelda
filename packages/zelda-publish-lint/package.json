@@ -17,7 +17,7 @@
     "build:deps": "father prebundle",
     "prepublishOnly": "father doctor && npm run build",
     "test": "jest --maxWorkers 2",
-    "lint-and-publish": "lint-and-publish"
+    "lint-and-publish": "npm run lint-and-publish"
   },
   "keywords": [],
   "author": "",
