@@ -23,7 +23,10 @@ export async function isExists(path: string) {
 export const createConfigFile = (config: Config, type = ConfigFileType.config) => {
   try {
     fs.writeFileSync(path.resolve(process.cwd(), type === ConfigFileType.config ? currentPath : packagePath), JSON.stringify(config, null, 2))
-    consola.success('create publish.config.json success')
+    if (type === ConfigFileType.config)
+      consola.success('create publish.config.json success')
+    else
+      consola.success('add package.json scripts success')
   }
   catch (error) {
     consola.error('create publish.config.json fail')

@@ -16,7 +16,7 @@
     "build": "father build",
     "build:deps": "father prebundle",
     "test": "jest --maxWorkers 2",
-    "lint-and-publish": "npm run lint-and-publish"
+    "lint-and-publish": "npm run start"
   },
   "keywords": [],
   "author": "",
