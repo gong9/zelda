@@ -12,23 +12,26 @@
   "authors": [],
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^18.14.1",
-    "father": "^4.1.5",
-    "@umijs/lint": "^4",
-    "eslint": "^8.23.0",
+    "@antfu/eslint-config": "^0.38.5",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
-    "@antfu/eslint-config": "^0.38.5",
+    "@types/jest": "^27",
+    "@types/node": "^18.14.1",
+    "@umijs/lint": "^4",
+    "@umijs/test": "^4",
+    "eslint": "^8.23.0",
+    "father": "^4.1.5",
     "husky": "^8.0.1",
     "jest": "^27",
-    "@types/jest": "^27",
-    "typescript": "^4",
     "ts-node": "^10",
-    "@umijs/test": "^4"
+    "typescript": "^4"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "dependencies": {
+    "lint-and-publish": "workspace:^"
   }
 }

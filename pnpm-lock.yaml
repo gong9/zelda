@@ -3,6 +3,10 @@ lockfileVersion: '6.0'
 importers:
 
   .:
+    dependencies:
+      lint-and-publish:
+        specifier: workspace:^
+        version: link:packages/zelda-publish-lint
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^0.38.5
