@@ -3,10 +3,6 @@ lockfileVersion: '6.0'
 importers:
 
   .:
-    dependencies:
-      lint-and-publish:
-        specifier: workspace:^
-        version: link:packages/zelda-publish-lint
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^0.38.5
@@ -41,6 +37,9 @@ importers:
       jest:
         specifier: ^27
         version: 27.5.1(ts-node@10.9.1)
+      lint-and-publish:
+        specifier: workspace:^
+        version: link:packages/zelda-publish-lint
       ts-node:
         specifier: ^10
         version: 10.9.1(@types/node@18.14.1)(typescript@4.8.4)

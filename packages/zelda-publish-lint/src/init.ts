@@ -14,7 +14,7 @@ export default () => {
       ...configData,
       scripts: {
         ...(configData.scripts || {}),
-        'lint-publish': 'npm run lint-and-publish',
+        'lint-publish': 'lint-and-publish',
       },
     } as Config)
   }

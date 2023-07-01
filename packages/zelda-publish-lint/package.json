@@ -1,6 +1,6 @@
 {
   "name": "lint-and-publish",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "dist/index.js",
   "bin": {
@@ -16,7 +16,7 @@
     "build": "father build",
     "build:deps": "father prebundle",
     "test": "jest --maxWorkers 2",
-    "lint-publish": "npm run start"
+    "lint-publish": "lint-and-publish"
   },
   "keywords": [],
   "author": "",
