@@ -5,7 +5,7 @@
   "scripts": {
     "build": "pnpm -r build",
     "prepare": "husky install",
-    "publish-all": "pnpm -r lint-and-publish",
+    "publish-all": "pnpm -r lint-publish",
     "test": "pnpm -r test"
   },
   "keywords": [],
