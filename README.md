@@ -32,4 +32,14 @@ pre-commit
 other lint && pnpm lint-en -p="xxx"
 ```
 
+### zelda-publish-lint
+
+校验此次操作是否需要发包，避免cicd行为中的无效发包导致的错误提醒
+
+#### Use
+
+- pnpm add lint-and-publish
+- npx lint-and-publish --init
+- 将用npm lint-publish替换掉npm publish
+
 MIT
