@@ -17,6 +17,7 @@
     "eslint": "^8.23.0",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@antfu/eslint-config": "^0.38.5",
     "husky": "^8.0.1",
     "jest": "^27",
     "@types/jest": "^27",
