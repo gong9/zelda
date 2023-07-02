@@ -4,6 +4,7 @@ import { consola } from 'consola'
 
 import type { Config } from './utils'
 import { currentPath, editConfigFile, isExists, packagePath, readJsonFile } from './utils'
+import gitActions from './git-actions'
 
 export default async () => {
   const currentCwd = process.cwd()
@@ -19,6 +20,8 @@ export default async () => {
   if (packageInfo.name && packageInfo.version && configInfo.name && configInfo.version) {
     if (packageInfo.name === configInfo.name && packageInfo.version !== configInfo.version) {
       editConfigFile(packageInfo as Config)
+      gitActions(configInfo.name)
+
       spawn('npm', ['publish'], {
         stdio: 'inherit',
       })
