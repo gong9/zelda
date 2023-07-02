@@ -1,5 +1,11 @@
 # lint-and-publish
 
+## 0.0.7
+
+### Patch Changes
+
+- feat: add monorepo support
+
 ## 0.0.6
 
 ### Patch Changes

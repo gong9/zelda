@@ -13,13 +13,19 @@ const argv = cli({
     init: {
       type: Boolean,
       description: 'lint publish init',
+
+    },
+    workspace: {
+      type: String,
+      description: 'workspace path',
+      alias: 'wp',
     },
   },
 })
 
-const { init } = argv.flags
+const { init, workspace } = argv.flags
 
 if (init)
-  initFunc()
+  initFunc(workspace)
 else
   runPublish()

@@ -1,6 +1,7 @@
 import path from 'node:path'
 import fs from 'fs-extra'
 import { consola } from 'consola'
+import { globSync } from 'glob'
 
 export const currentPath = 'publish.config.json'
 export const packagePath = 'package.json'
@@ -47,4 +48,23 @@ export function readJsonFile(path: string): Partial<Config> {
     consola.error(error)
     return {}
   }
+}
+
+export const getFiles = (folderPath: string): string[] => {
+  try {
+    const files = fs.readdirSync(folderPath, { withFileTypes: true })
+    const subFolders = files
+      .filter(file => file.isDirectory())
+      .map(file => file.name)
+
+    return subFolders
+  }
+  catch (err) {
+    consola.error('Error reading directory:', err)
+    return []
+  }
+}
+
+export const matchPackages = (pattern: string) => {
+  return globSync(pattern)
 }
