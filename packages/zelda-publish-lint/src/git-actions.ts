@@ -1,6 +1,10 @@
 import { spawnSync } from 'node:child_process'
 
 export default (name: string) => {
+  spawnSync('git', ['pull'], {
+    stdio: 'inherit',
+  })
+
   spawnSync('git', ['add', '.'], {
     stdio: 'inherit',
   })

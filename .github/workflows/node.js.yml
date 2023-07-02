@@ -25,3 +25,4 @@ jobs:
       - run: pnpm run publish-all
         env:
           NODE_AUTH_TOKEN: ${{secrets.LEGO}}
+          ACCESS_TOKEN: ${{secrets.GIT_ACCESS_TOKEN}}
