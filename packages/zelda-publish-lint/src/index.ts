@@ -13,7 +13,6 @@ const argv = cli({
     init: {
       type: Boolean,
       description: 'lint publish init',
-      alias: 'p',
     },
   },
 })

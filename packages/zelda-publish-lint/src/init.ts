@@ -18,6 +18,7 @@ export default () => {
       },
     } as Config)
   }
-
-  else { consola.error('请先初始化package.json, 并且确保name和version存在') }
+  else {
+    consola.error('please check package.json, name and version is required')
+  }
 }

@@ -5,6 +5,8 @@
   "scripts": {
     "build": "pnpm -r build",
     "prepare": "husky install",
+    "changeset": "npx changeset",
+    "release": "npx changeset version",
     "publish-all": "pnpm -r lint-publish",
     "test": "pnpm -r test"
   },
@@ -23,13 +25,16 @@
     "father": "^4.1.5",
     "husky": "^8.0.1",
     "jest": "^27",
+    "lint-and-publish": "workspace:^",
     "ts-node": "^10",
-    "typescript": "^4",
-    "lint-and-publish": "workspace:^"
+    "typescript": "^4"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.26.2"
   }
 }
