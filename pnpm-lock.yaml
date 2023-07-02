@@ -42,7 +42,7 @@ importers:
         specifier: ^27
         version: 27.5.1(ts-node@10.9.1)
       lint-and-publish:
-        specifier: workspace:^
+        specifier: 0.0.6
         version: link:packages/zelda-publish-lint
       ts-node:
         specifier: ^10
