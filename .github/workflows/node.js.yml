@@ -18,6 +18,10 @@ jobs:
       - run: pnpm install --no-frozen-lockfile
       - run: pnpm build
       - run: pnpm i
+      - name: Configure Git
+        run: |
+          git config user.name "gong"
+          git config user.email "517441540@qq.com"
       - run: pnpm run publish-all
         env:
           NODE_AUTH_TOKEN: ${{secrets.LEGO}}
