@@ -1,5 +1,11 @@
 # lint-and-publish
 
+## 0.0.8
+
+### Patch Changes
+
+- fix: push add -f
+
 ## 0.0.7
 
 ### Patch Changes

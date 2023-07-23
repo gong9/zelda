@@ -13,7 +13,7 @@ export default (name: string) => {
     stdio: 'inherit',
   })
 
-  spawnSync('git', ['push'], {
+  spawnSync('git', ['push', '-f'], {
     stdio: 'inherit',
   })
 }
