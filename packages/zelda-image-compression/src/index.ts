@@ -4,20 +4,18 @@ import packJson from '../package.json'
 import execDiff from './exec'
 
 const argv = cli({
-  name: 'zelda-en-lint',
+  name: 'zelda-image-compression',
   version: packJson.version,
-  description: 'lint-en',
+  description: 'image-compression',
   flags: {
     path: {
       type: String,
       description: 'Input your file path',
       alias: 'p',
     },
-    all: {
-      type: Boolean,
-      alias: 'a',
-    },
   },
 })
+
+// const { path } = argv.flags
 
 execDiff()
