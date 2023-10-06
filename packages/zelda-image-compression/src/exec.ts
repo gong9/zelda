@@ -39,7 +39,6 @@ const execDiff = () => {
 
           if (imagePathList.length > 0) {
             consola.info(`检测到图片资源: ${imagePathList.join(', ')}`)
-            consola.info('开始压缩')
             handleCompress(imagePathList, rootPath)
           }
           else { consola.info('本次提交无图片资源的改动') }

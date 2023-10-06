@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { execSync } from 'node:child_process'
 import imageminJpegtran from 'imagemin-jpegtran'
 import imageminPngquant from 'imagemin-pngquant'
 import { consola } from 'consola'
@@ -54,6 +55,17 @@ async function isExists(path: string) {
 }
 
 const handleCompress = async (pathArr: string[], rootPath: string) => {
+    if (pathArr.length === 0)
+        return
+
+    const result = await consola.prompt('是否执行压缩', {
+        type: 'confirm',
+    })
+
+    if (!result)
+        return
+
+    consola.info('开始压缩')
     const tempPath = path.resolve(rootPath, 'image-temp')
 
     if (await isExists(tempPath))
@@ -61,14 +73,27 @@ const handleCompress = async (pathArr: string[], rootPath: string) => {
 
     const res = await Promise.allSettled(pathArr.map(img => compress(img, rootPath)))
 
-    map.forEach(async (item, key) => {
-        await move(item, key)
-        map.delete(key)
-    })
+    // map.forEach(async (item, key) => {
+    //     await move(item, key)
+    //     map.delete(key)
+    // })
+
+    const keyIterator = map.keys()
+    let isDone = false
+
+    while (!isDone) {
+        const { value: key, done } = keyIterator.next()
+        isDone = !!done
+
+        if (!isDone) {
+            await move(map.get(key)!, key)
+            map.delete(key)
+        }
+    }
 
     if (map.size === 0) {
         await remove(tempPath)
-        consola.success('压缩完成')
+        consola.success('需要处理的文件已经压缩完成')
     }
 
     const rejectedImage = res.filter((item) => {
@@ -77,6 +102,8 @@ const handleCompress = async (pathArr: string[], rootPath: string) => {
 
     if (rejectedImage.length > 0)
         consola.warn('存在未完成压缩的文件', rejectedImage)
+    else
+        execSync('git add .')
 }
 
 export default handleCompress

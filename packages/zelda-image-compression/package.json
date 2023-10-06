@@ -1,8 +1,7 @@
 {
   "name": "zelda-image-compression",
-  "version": "0.0.1",
-  "private": true,
-  "description": "",
+  "version": "0.0.2",
+  "description": "image-compression",
   "main": "dist/index.js",
   "bin": {
     "lint-en": "dist/index.js"
@@ -17,7 +16,10 @@
     "build": "father build",
     "test": "jest --maxWorkers 2"
   },
-  "keywords": [],
+  "keywords": [
+    "compression",
+    "image"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
