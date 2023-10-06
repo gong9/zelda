@@ -1,10 +1,10 @@
 {
   "name": "zelda-image-compression",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "image-compression",
   "main": "dist/index.js",
   "bin": {
-    "lint-en": "dist/index.js"
+    "image-compression": "dist/index.js"
   },
   "files": [
     "dist",

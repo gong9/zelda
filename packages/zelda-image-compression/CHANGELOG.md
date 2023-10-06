@@ -1,5 +1,11 @@
 # zelda-image-compression
 
+## 0.0.3
+
+### Patch Changes
+
+- fix: bugfix
+
 ## 0.0.2
 
 ### Patch Changes

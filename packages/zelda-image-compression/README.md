@@ -1,6 +1,6 @@
 # zelda-image-compression
 
-放到 husky pre-commit 中，用于压缩项目暂存区的图片资源
+用于压缩项目暂存区的图片资源
 
 ## usage
 
@@ -10,11 +10,10 @@
 cnpm i zelda-image-compression -D
 ```
 
-pre-commit 中
+git add . 之后执行
 
+```bash
+npm run image-compression
 ```
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
 
-npx zelda-image-compression
-```
+git commit ...
