@@ -1,6 +1,6 @@
 {
   "name": "zelda-image-compression",
-  "version": "0.0.3",
+  "version": "0.0.3-beta0",
   "description": "image-compression",
   "main": "dist/index.js",
   "bin": {

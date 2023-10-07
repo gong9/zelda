@@ -52,7 +52,7 @@ cnpm i zelda-image-compression -D
 git add . 之后执行
 
 ```bash
-npm run image-compression
+pnpm image-compression
 ```
 
 git commit ...
