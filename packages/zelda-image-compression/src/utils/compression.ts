@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { readFile } from 'node:fs/promises'
 import { execSync } from 'node:child_process'
 import imageminJpegtran from 'imagemin-jpegtran'
 import imageminPngquant from 'imagemin-pngquant'
@@ -7,6 +8,14 @@ import { v4 as uuidv4 } from 'uuid'
 import fs from 'fs-extra'
 
 const map = new Map<string, string>()
+
+const isApng = async (path: string) => {
+    const isApng = (await import('is-apng')).default
+
+    const buffer = await readFile(path)
+
+    return isApng(buffer)
+}
 
 const compress = async (imgPath: string, rootPath: string) => {
     const imagemin = (await import('imagemin')).default
@@ -71,12 +80,8 @@ const handleCompress = async (pathArr: string[], rootPath: string) => {
     if (await isExists(tempPath))
         await remove(tempPath)
 
-    const res = await Promise.allSettled(pathArr.map(img => compress(img, rootPath)))
-
-    // map.forEach(async (item, key) => {
-    //     await move(item, key)
-    //     map.delete(key)
-    // })
+    const filterpPathArr = pathArr.filter(path => !isApng(path))
+    const res = await Promise.allSettled(filterpPathArr.map(img => compress(img, rootPath)))
 
     const keyIterator = map.keys()
     let isDone = false
@@ -92,7 +97,8 @@ const handleCompress = async (pathArr: string[], rootPath: string) => {
     }
 
     if (map.size === 0) {
-        await remove(tempPath)
+        if (await isExists(tempPath))
+            await remove(tempPath)
         consola.success('需要处理的文件已经压缩完成')
     }
 
