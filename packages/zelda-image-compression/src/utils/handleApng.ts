@@ -81,7 +81,6 @@ const detachApng = async (inputPath: string) => {
     for (let i = 0; i < anim.frames.length; i++) {
         const outputFilePath = `${outputPath}/frame_${i}.png`
         allPathArr.push(outputFilePath)
-        consola.info(anim.frames[i], 1111)
 
         await blobToImage(anim.frames[i].imageData, outputFilePath)
 
