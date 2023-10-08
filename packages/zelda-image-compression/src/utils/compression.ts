@@ -51,7 +51,7 @@ const compress = async (imgPath: string, rootPath: string) => {
  * remove file
  * @param filePath
  */
-const remove = async (filePath: string) => {
+export const remove = async (filePath: string) => {
     const files = fs.readdirSync(filePath)
     for (let i = 0; i < files.length; i++) {
         const newPath = path.join(filePath, files[i])

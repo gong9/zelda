@@ -45,9 +45,7 @@ export const resetSize = (inputDirectory: string, outputDirectory: string, targe
             files.forEach((file, index) => {
                 if (file.endsWith('.png')) {
                     sharp(`${inputDirectory}/${file}`)
-                        .resize(targetWidth, targetHeight)
-                        .toFormat('png')
-                        .png({ compressionLevel: 6, adaptiveFiltering: true, force: true })
+                        .resize(targetWidth, targetHeight, { fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 0 } })
                         .toFile(`${outputDirectory}/${file}`, (err) => {
                             if (err)
                                 throw err

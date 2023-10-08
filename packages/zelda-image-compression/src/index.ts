@@ -19,5 +19,5 @@ const argv = cli({
 
 // const { path } = argv.flags
 
-execDiff()
-// hanldeApng()
+// execDiff()
+hanldeApng()

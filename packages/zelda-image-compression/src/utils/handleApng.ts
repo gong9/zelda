@@ -9,7 +9,7 @@ import imageminPngquant from 'imagemin-pngquant'
 import Assembler from 'apng-assembler'
 import fs from 'fs-extra'
 
-import { isExists } from './compression'
+import { isExists, remove } from './compression'
 import { getAllFilesName, getDimensions, getFirstFrame, resetSize } from './'
 
 let rootPath = ''
@@ -49,6 +49,8 @@ const compressSingleFrame = async (inputPathArr: string[]) => {
 
     if (!await isExists(temp))
         fs.ensureDirSync(temp)
+    else
+        await remove(temp)
 
     const files = await imagemin(inputPathArr, {
         destination: temp,
@@ -73,10 +75,13 @@ const detachApng = async (inputPath: string) => {
 
     if (!await isExists(outputPath))
         fs.ensureDirSync(outputPath)
+    else
+        await remove(outputPath)
 
     for (let i = 0; i < anim.frames.length; i++) {
         const outputFilePath = `${outputPath}/frame_${i}.png`
         allPathArr.push(outputFilePath)
+        consola.info(anim.frames[i], 1111)
 
         await blobToImage(anim.frames[i].imageData, outputFilePath)
 
@@ -98,6 +103,8 @@ const assembleApng = async () => {
 
     if (!await isExists(path.resolve(rootPath, standardDir)))
         fs.ensureDirSync(path.resolve(rootPath, standardDir))
+    else
+        await remove(path.resolve(rootPath, standardDir))
 
     await resetSize(path.resolve(rootPath, compressSingleFrameDir), path.resolve(rootPath, standardDir), width!, height!)
 
