@@ -11,7 +11,6 @@ const map = new Map<string, string>()
 
 const isApng = async (path: string) => {
     const isApng = (await import('is-apng')).default
-
     const buffer = await readFile(path)
 
     return isApng(buffer)

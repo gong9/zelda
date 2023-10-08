@@ -2,6 +2,7 @@
 import { cli } from 'cleye'
 import packJson from '../package.json'
 import execDiff from './exec'
+import './utils/handleApng'
 
 const argv = cli({
   name: 'zelda-image-compression',
