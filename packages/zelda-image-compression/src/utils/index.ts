@@ -10,6 +10,17 @@ export const getDimensions = async (path: string) => {
     return await sharp(path).metadata()
 }
 
+export const getAllFilesName = async (path: string) => {
+    return new Promise((resolve, reject) => {
+        fs.readdir(path, (err, files) => {
+            if (err)
+                reject(err)
+
+            resolve(files)
+        })
+    }) as Promise<string[]>
+}
+
 export const getFirstFrame = async (path: string) => {
     return new Promise((resolve, reject) => {
         fs.readdir(path, (err, files) => {
@@ -26,20 +37,26 @@ export const getFirstFrame = async (path: string) => {
 }
 
 export const resetSize = (inputDirectory: string, outputDirectory: string, targetWidth: number, targetHeight: number) => {
-    fs.readdir(inputDirectory, (err, files) => {
-        if (err)
-            throw err
+    return new Promise((resolve, reject) => {
+        fs.readdir(inputDirectory, (err, files) => {
+            if (err)
+                reject(err)
 
-        files.forEach((file) => {
-            if (file.endsWith('.png')) {
-                sharp(`${inputDirectory}/${file}`)
-                    .resize(targetWidth, targetHeight)
-                    .toFile(`${outputDirectory}/${file}`, (err) => {
-                        if (err)
-                            throw err
-                        console.log(`Resized ${file}`)
-                    })
-            }
+            files.forEach((file, index) => {
+                if (file.endsWith('.png')) {
+                    sharp(`${inputDirectory}/${file}`)
+                        .resize(targetWidth, targetHeight)
+                        .toFormat('png')
+                        .png({ compressionLevel: 6, adaptiveFiltering: true, force: true })
+                        .toFile(`${outputDirectory}/${file}`, (err) => {
+                            if (err)
+                                throw err
+
+                            if (index === files.length - 1)
+                                resolve(true)
+                        })
+                }
+            })
         })
     })
 }
