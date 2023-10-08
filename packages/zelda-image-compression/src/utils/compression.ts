@@ -9,6 +9,11 @@ import fs from 'fs-extra'
 
 const map = new Map<string, string>()
 
+/**
+ * isApng, apng handle separately
+ * @param path
+ * @returns
+ */
 const isApng = async (path: string) => {
     const isApng = (await import('is-apng')).default
     const buffer = await readFile(path)
@@ -16,6 +21,12 @@ const isApng = async (path: string) => {
     return isApng(buffer)
 }
 
+/**
+ * compress
+ * @param imgPath
+ * @param rootPath
+ * @returns
+ */
 const compress = async (imgPath: string, rootPath: string) => {
     const imagemin = (await import('imagemin')).default
     const uuid = uuidv4()
@@ -36,7 +47,11 @@ const compress = async (imgPath: string, rootPath: string) => {
     return files
 }
 
-async function remove(filePath: string) {
+/**
+ * remove file
+ * @param filePath
+ */
+const remove = async (filePath: string) => {
     const files = fs.readdirSync(filePath)
     for (let i = 0; i < files.length; i++) {
         const newPath = path.join(filePath, files[i])
@@ -49,7 +64,12 @@ async function remove(filePath: string) {
     fs.rmdirSync(filePath)
 }
 
-async function move(srcPath: string, path: string) {
+/**
+ * move
+ * @param srcPath
+ * @param path
+ */
+const move = async (srcPath: string, path: string) => {
     try {
         await fs.move(srcPath, path, { overwrite: true })
     }
@@ -58,10 +78,16 @@ async function move(srcPath: string, path: string) {
     }
 }
 
-async function isExists(path: string) {
+export const isExists = async (path: string) => {
     return await fs.pathExists(path)
 }
 
+/**
+ * start compress
+ * @param pathArr
+ * @param rootPath
+ * @returns
+ */
 const handleCompress = async (pathArr: string[], rootPath: string) => {
     if (pathArr.length === 0)
         return

@@ -4,7 +4,7 @@ import { consola } from 'consola'
 
 import handleCompress from './utils/compression.js'
 
-const REGEX = /\.(jpg|jpeg|png|gif)$/i
+const REGEX = /\.(jpg|jpeg|png|gif)$/g
 let rootPath: string
 
 try {
