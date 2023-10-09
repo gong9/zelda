@@ -131,7 +131,7 @@ const assembleApng = async () => {
             consola.success('合成完成.')
             // remove(path.resolve(rootPath, standardDir))
             // remove(path.resolve(rootPath, detachDir))
-            remove(path.resolve(rootPath, compressSingleFrameDir))
+            // remove(path.resolve(rootPath, compressSingleFrameDir))
         },
         (error: Error) => {
             console.error('assemble error', error)

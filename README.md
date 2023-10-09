@@ -57,6 +57,14 @@ pnpm image-compression
 
 git commit ...
 
+后续：
+
+针对于 apng 格式的图片，目前支持 apng 拆解成 png 序列帧，png 序列帧合成 apng
+
+但是由于 apng 拆解对导致图片的尺寸发生一些微笑变化，目前暂不可使用。故针对于 apng 的压缩可以直接给出 png 序列帧，在交由`assembleApng` 方法压缩
+
+但是此种方式因为需要 png 序列帧资源，比较不不方便。所以后续计划写成 electron 桌面应用，方便设计同学直接生成 apng
+
 ### zelda-publish-lint
 
 由于 cicd 中，我们一般会直接配置`npm run build`,`npm publish` 但是很多时候我们的代码并没有版本改动，这样会导致无效的发包，所以我们需要一个工具来校验此次操作是否需要真正发包，避免 cicd 行为中的无效发包导致的错误提醒

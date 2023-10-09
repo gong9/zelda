@@ -6,7 +6,6 @@ import sharp from 'sharp'
  * @param path
  */
 export const getDimensions = async (path: string) => {
-    // console.log(path)
     return await sharp(path).metadata()
 }
 
