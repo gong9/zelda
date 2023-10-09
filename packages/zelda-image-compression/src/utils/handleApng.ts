@@ -89,29 +89,35 @@ const detachApng = async (inputPath: string) => {
 }
 
 /**
- * png assemble Apng
+ * png size standard
  */
-const assembleApng = async () => {
-    // const firstFramePath = await getFirstFrame(path.resolve(rootPath, compressSingleFrameDir))
-    // const {
-    //     width,
-    //     height,
-    // } = await getDimensions(path.resolve(rootPath, compressSingleFrameDir, firstFramePath))
-
+const sizeStandard = async () => {
     consola.info('分离图片大小标准化')
+
+    const firstFramePath = await getFirstFrame(path.resolve(rootPath, detachDir))
+    const {
+        width,
+        height,
+    } = await getDimensions(path.resolve(rootPath, detachDir, firstFramePath))
 
     if (!await isExists(path.resolve(rootPath, standardDir)))
         fs.ensureDirSync(path.resolve(rootPath, standardDir))
     else
         await remove(path.resolve(rootPath, standardDir))
 
-    await resetSize(path.resolve(rootPath, detachDir), path.resolve(rootPath, standardDir))
-
+    await resetSize(path.resolve(rootPath, detachDir), path.resolve(rootPath, standardDir), width, height)
     consola.info('分离图片大小标准化完成')
+}
 
+/**
+ * png assemble Apng
+ */
+const assembleApng = async () => {
     consola.info('开始单帧压缩')
     await compressSingleFrame((await getAllFilesName(path.resolve(rootPath, standardDir))).map(item => path.resolve(rootPath, standardDir, item)))
     consola.success('单帧压缩完成')
+
+    consola.info('png开始合成apng')
 
     Assembler.assemble(
         path.resolve(rootPath, `${compressSingleFrameDir}/*.png`),
@@ -123,8 +129,8 @@ const assembleApng = async () => {
     ).then(
         () => {
             consola.success('合成完成.')
-            remove(path.resolve(rootPath, standardDir))
-            remove(path.resolve(rootPath, detachDir))
+            // remove(path.resolve(rootPath, standardDir))
+            // remove(path.resolve(rootPath, detachDir))
             remove(path.resolve(rootPath, compressSingleFrameDir))
         },
         (error: Error) => {
@@ -134,12 +140,14 @@ const assembleApng = async () => {
     consola.info('合成中，时间较长，请耐心等待')
 }
 
-const hanldeApng = async () => {
+const hanldeApng = async (isStandard = false) => {
     consola.info('apng开始单帧分离')
     await detachApng(path.resolve(__dirname, './apng图片.png'))
     consola.info('分离完成')
 
-    consola.info('png开始合成apng')
+    if (isStandard)
+        await sizeStandard()
+
     await assembleApng()
 }
 
