@@ -112,9 +112,14 @@ const sizeStandard = async () => {
 /**
  * png assemble Apng
  */
-const assembleApng = async () => {
+const assembleApng = async (isStandard = false) => {
     consola.info('开始单帧压缩')
-    await compressSingleFrame((await getAllFilesName(path.resolve(rootPath, standardDir))).map(item => path.resolve(rootPath, standardDir, item)))
+    if (!isStandard)
+        await compressSingleFrame((await getAllFilesName(path.resolve(rootPath, detachDir))).map(item => path.resolve(rootPath, detachDir, item)))
+
+    else
+        await compressSingleFrame((await getAllFilesName(path.resolve(rootPath, standardDir))).map(item => path.resolve(rootPath, standardDir, item)))
+
     consola.success('单帧压缩完成')
 
     consola.info('png开始合成apng')
@@ -148,7 +153,7 @@ const hanldeApng = async (isStandard = false) => {
     if (isStandard)
         await sizeStandard()
 
-    await assembleApng()
+    await assembleApng(isStandard)
 }
 
 export {
