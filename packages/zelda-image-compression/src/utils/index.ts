@@ -36,7 +36,7 @@ export const getFirstFrame = async (path: string) => {
     }) as Promise<string>
 }
 
-export const resetSize = (inputDirectory: string, outputDirectory: string, targetWidth: number, targetHeight: number) => {
+export const resetSize = (inputDirectory: string, outputDirectory: string, targetWidth?: number, targetHeight?: number) => {
     return new Promise((resolve, reject) => {
         fs.readdir(inputDirectory, (err, files) => {
             if (err)
@@ -45,7 +45,8 @@ export const resetSize = (inputDirectory: string, outputDirectory: string, targe
             files.forEach((file, index) => {
                 if (file.endsWith('.png')) {
                     sharp(`${inputDirectory}/${file}`)
-                        .resize(targetWidth, targetHeight, { fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 0 } })
+                        .resize(500, 500, { background: { r: 255, g: 255, b: 255, alpha: 0 } })
+                        .png()
                         .toFile(`${outputDirectory}/${file}`, (err) => {
                             if (err)
                                 throw err

@@ -18,7 +18,7 @@ const isApng = async (path: string) => {
     const isApng = (await import('is-apng')).default
     const buffer = await readFile(path)
 
-    return isApng(buffer)
+    return (/\.(png)$/g.test(path)) && isApng(buffer)
 }
 
 /**
@@ -29,6 +29,7 @@ const isApng = async (path: string) => {
  */
 const compress = async (imgPath: string, rootPath: string) => {
     const imagemin = (await import('imagemin')).default
+    const imageminWebp = (await import('imagemin-webp')).default
     const uuid = uuidv4()
     const temp = path.resolve(rootPath, 'image-temp', uuid)
 
@@ -41,6 +42,7 @@ const compress = async (imgPath: string, rootPath: string) => {
             imageminPngquant({
                 quality: [0.6, 0.8],
             }),
+            imageminWebp({ quality: 80 }),
         ],
     })
 
@@ -105,7 +107,7 @@ const handleCompress = async (pathArr: string[], rootPath: string) => {
     if (await isExists(tempPath))
         await remove(tempPath)
 
-    const filterpPathArr = pathArr.filter(path => !isApng(path))
+    const filterpPathArr = pathArr.filter(async path => !await isApng(path))
     const res = await Promise.allSettled(filterpPathArr.map(img => compress(img, rootPath)))
 
     const keyIterator = map.keys()

@@ -31,6 +31,7 @@
     "imagemin": "^8.0.1",
     "imagemin-jpegtran": "^7.0.0",
     "imagemin-pngquant": "^9.0.2",
+    "imagemin-webp": "^8.0.0",
     "is-apng": "^1.0.1",
     "sharp": "^0.32.6",
     "uuid": "^9.0.1"
@@ -39,6 +40,7 @@
     "@types/fs-extra": "^11.0.2",
     "@types/imagemin": "^8.0.1",
     "@types/imagemin-jpegtran": "^5.0.2",
+    "@types/imagemin-webp": "^7.0.1",
     "@types/uuid": "^9.0.4"
   }
 }

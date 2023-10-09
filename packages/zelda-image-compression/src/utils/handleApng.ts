@@ -92,11 +92,11 @@ const detachApng = async (inputPath: string) => {
  * png assemble Apng
  */
 const assembleApng = async () => {
-    const firstFramePath = await getFirstFrame(path.resolve(rootPath, compressSingleFrameDir))
-    const {
-        width,
-        height,
-    } = await getDimensions(path.resolve(rootPath, compressSingleFrameDir, firstFramePath))
+    // const firstFramePath = await getFirstFrame(path.resolve(rootPath, compressSingleFrameDir))
+    // const {
+    //     width,
+    //     height,
+    // } = await getDimensions(path.resolve(rootPath, compressSingleFrameDir, firstFramePath))
 
     consola.info('分离图片大小标准化')
 
@@ -105,21 +105,27 @@ const assembleApng = async () => {
     else
         await remove(path.resolve(rootPath, standardDir))
 
-    await resetSize(path.resolve(rootPath, compressSingleFrameDir), path.resolve(rootPath, standardDir), width!, height!)
+    await resetSize(path.resolve(rootPath, detachDir), path.resolve(rootPath, standardDir))
 
     consola.info('分离图片大小标准化完成')
 
+    consola.info('开始单帧压缩')
+    await compressSingleFrame((await getAllFilesName(path.resolve(rootPath, standardDir))).map(item => path.resolve(rootPath, standardDir, item)))
+    consola.success('单帧压缩完成')
+
     Assembler.assemble(
-        path.resolve(rootPath, `${standardDir}/*.png`),
+        path.resolve(rootPath, `${compressSingleFrameDir}/*.png`),
         'output.png',
         {
-            loopCount: 0,
-            frameDelay: 100,
+            frameDelay: 50,
             compression: Assembler.COMPRESS_7ZIP,
         },
     ).then(
         () => {
             consola.success('合成完成.')
+            remove(path.resolve(rootPath, standardDir))
+            remove(path.resolve(rootPath, detachDir))
+            remove(path.resolve(rootPath, compressSingleFrameDir))
         },
         (error: Error) => {
             console.error('assemble error', error)
@@ -132,10 +138,6 @@ const hanldeApng = async () => {
     consola.info('apng开始单帧分离')
     await detachApng(path.resolve(__dirname, './apng图片.png'))
     consola.info('分离完成')
-
-    consola.info('开始单帧压缩')
-    await compressSingleFrame((await getAllFilesName(path.resolve(rootPath, detachDir))).map(item => path.resolve(rootPath, detachDir, item)))
-    consola.success('单帧压缩完成')
 
     consola.info('png开始合成apng')
     await assembleApng()
